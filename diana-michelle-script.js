@@ -163,7 +163,10 @@ const statsObserver = new IntersectionObserver((entries) => {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
                 const target = parseInt(stat.textContent);
-                animateCounter(stat, target);
+                // Only animate if it's a valid number
+                if (!isNaN(target)) {
+                    animateCounter(stat, target);
+                }
             });
         }
     });
