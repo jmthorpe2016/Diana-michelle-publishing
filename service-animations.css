@@ -1,147 +1,207 @@
 /* ========================================
    CUSTOM SERVICE CARD ANIMATIONS
+   Content hidden until hover - Show unique covers first
    ======================================== */
 
-/* 1. MANUSCRIPT EVALUATION - Notebook/Page Flip */
+/* Hide all service text content initially */
+.service-card h3,
+.service-card p,
+.service-card .service-pricing {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.3s;
+    position: relative;
+    z-index: 10;
+}
+
+.service-card:hover h3,
+.service-card:hover p,
+.service-card:hover .service-pricing {
+    opacity: 1;
+}
+
+/* Make icons larger when not hovered */
+.service-card .service-icon {
+    font-size: 8rem;
+    transition: all 0.6s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.service-card:hover .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   1. MANUSCRIPT EVALUATION - Notebook Page Flip
+   ======================================== */
 .service-manuscript {
     border-radius: 5px 15px 15px 5px;
-    border-left: 8px solid var(--leather-brown);
+    border-left: 15px solid var(--leather-brown);
     background: 
         repeating-linear-gradient(
             transparent,
-            transparent 25px,
-            rgba(212, 165, 116, 0.1) 25px,
-            rgba(212, 165, 116, 0.1) 26px
+            transparent 30px,
+            rgba(92, 64, 51, 0.2) 30px,
+            rgba(92, 64, 51, 0.2) 31px
         ),
-        linear-gradient(135deg, rgba(245, 240, 232, 0.98) 0%, rgba(232, 220, 200, 0.98) 100%);
+        linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
 }
 
 .service-manuscript::after {
     background: 
         repeating-linear-gradient(
             transparent,
-            transparent 25px,
-            rgba(212, 165, 116, 0.1) 25px,
-            rgba(212, 165, 116, 0.1) 26px
+            transparent 30px,
+            rgba(92, 64, 51, 0.2) 30px,
+            rgba(92, 64, 51, 0.2) 31px
         ),
-        linear-gradient(135deg, rgba(245, 240, 232, 0.98) 0%, rgba(232, 220, 200, 0.98) 100%);
-    border-left: 8px solid var(--leather-brown);
+        linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+    border-left: 15px solid var(--leather-brown);
+    border-radius: 5px 15px 15px 5px;
 }
 
 .service-manuscript:hover {
-    transform: translateY(-10px) translateX(20px) rotateY(-12deg);
+    transform: translateY(-15px) translateX(25px) rotateY(-15deg);
 }
 
 .service-manuscript:hover::after {
-    transform: rotateY(-35deg);
-    box-shadow: -20px 10px 35px rgba(92, 64, 51, 0.5);
+    transform: rotateY(-45deg);
+    box-shadow: -25px 15px 40px rgba(92, 64, 51, 0.6);
 }
 
-/* 2. EDITORIAL SERVICES - Open Book with Magnifying Glass */
+/* ========================================
+   2. EDITORIAL SERVICES - Magnifying Glass
+   ======================================== */
 .service-editorial {
     border-radius: 15px;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0e8 100%);
     clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
 }
 
 .service-editorial::before {
     content: '🔍';
-    font-size: 5rem;
-    opacity: 0;
+    position: absolute;
+    font-size: 12rem;
+    opacity: 0.15;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
+    transform: translate(-50%, -50%) scale(0.3);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .service-editorial:hover::before {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.5);
+    animation: magnifyPulse 2s ease-in-out infinite;
+}
+
+@keyframes magnifyPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1.5); }
+    50% { transform: translate(-50%, -50%) scale(1.6); }
 }
 
 .service-editorial:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-15px) scale(1.05);
 }
 
-/* 3. COVER DESIGN - Canvas/Art Board */
+/* ========================================
+   3. COVER DESIGN - Artist Canvas with Paintbrush
+   ======================================== */
 .service-cover {
     border-radius: 8px;
-    border: 6px solid var(--dark-wood);
-    background: linear-gradient(135deg, 
-        rgba(255, 250, 240, 0.98) 0%, 
-        rgba(240, 230, 210, 0.98) 50%,
-        rgba(255, 250, 240, 0.98) 100%);
+    border: 8px solid var(--dark-wood);
+    background: linear-gradient(135deg, #fffaf0 0%, #f0e6d2 100%);
     position: relative;
+    overflow: hidden;
 }
 
 .service-cover::before {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, 
+    top: -20px;
+    left: -150%;
+    width: 200%;
+    height: calc(100% + 40px);
+    background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(244, 196, 101, 0.3) 25%,
-        rgba(212, 165, 116, 0.3) 50%,
-        rgba(122, 155, 58, 0.3) 75%,
+        rgba(244, 196, 101, 0.6) 20%,
+        rgba(212, 165, 116, 0.6) 40%,
+        rgba(122, 155, 58, 0.6) 60%,
+        rgba(244, 196, 101, 0.6) 80%,
         transparent 100%);
     opacity: 0;
-    transition: all 0.6s ease;
-    z-index: -1;
-    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 1;
+    transform: skewX(-20deg);
 }
 
 .service-cover:hover::before {
     opacity: 1;
-    animation: paintbrush 1.5s ease-in-out;
-}
-
-@keyframes paintbrush {
-    0% { transform: translateX(-100%) rotate(-5deg); }
-    100% { transform: translateX(100%) rotate(5deg); }
+    left: 100%;
+    transition: all 1.2s ease-out;
 }
 
 .service-cover:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-15px) scale(1.05);
     border-color: var(--candle-warm);
+    box-shadow: 0 20px 50px rgba(212, 165, 116, 0.5);
 }
 
-/* 4. BOOK PRODUCTION - Hardcover Book */
+/* ========================================
+   4. BOOK PRODUCTION - Hardcover Book Opening
+   ======================================== */
 .service-production {
-    border-radius: 5px 12px 12px 5px;
-    border-left: 12px solid var(--leather-brown);
-    border-right: 2px solid rgba(92, 64, 51, 0.3);
-    border-top: 2px solid rgba(92, 64, 51, 0.2);
-    border-bottom: 2px solid rgba(92, 64, 51, 0.2);
+    border-radius: 5px 15px 15px 5px;
+    border-left: 18px solid var(--leather-brown);
+    border-right: 3px solid rgba(92, 64, 51, 0.4);
+    border-top: 3px solid rgba(92, 64, 51, 0.3);
+    border-bottom: 3px solid rgba(92, 64, 51, 0.3);
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
     box-shadow: 
-        inset -2px 0 5px rgba(0, 0, 0, 0.1),
-        0 5px 15px rgba(92, 64, 51, 0.2);
+        inset -3px 0 8px rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(92, 64, 51, 0.3);
+    position: relative;
+}
+
+.service-production .service-icon {
+    color: #f5f0e8;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .service-production::after {
-    border-left: 12px solid var(--leather-brown);
-    border-radius: 5px 12px 12px 5px;
+    background: linear-gradient(135deg, #e8dcc8 0%, #d4c4a8 100%);
+    border-left: 18px solid var(--leather-brown);
+    border-radius: 5px 15px 15px 5px;
+    box-shadow: -5px 5px 20px rgba(92, 64, 51, 0.4);
 }
 
 .service-production:hover {
-    transform: translateY(-15px) translateX(10px) rotateY(-5deg) rotateX(5deg);
+    transform: translateY(-20px) translateX(15px) rotateY(-8deg) rotateX(5deg);
+    background: linear-gradient(135deg, #e8dcc8 0%, #d4c4a8 100%);
+}
+
+.service-production:hover .service-icon {
+    color: var(--primary-color);
+    text-shadow: none;
 }
 
 .service-production:hover::after {
-    transform: rotateY(-15deg);
-    box-shadow: -10px 15px 40px rgba(92, 64, 51, 0.5);
+    transform: rotateY(-20deg);
+    box-shadow: -15px 15px 45px rgba(92, 64, 51, 0.6);
 }
 
-/* 5. MARKETING & PR - Social Media Card */
+/* ========================================
+   5. MARKETING & PR - Social Media Feed Scroll
+   ======================================== */
 .service-marketing {
     border-radius: 20px;
-    border: 3px solid rgba(212, 165, 116, 0.4);
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.98) 0%, 
-        rgba(245, 240, 232, 0.98) 100%);
+    border: 4px solid rgba(212, 165, 116, 0.5);
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0e8 100%);
     overflow: hidden;
+    position: relative;
 }
 
 .service-marketing::before {
@@ -150,14 +210,15 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 8px;
+    height: 12px;
     background: linear-gradient(90deg, 
         #f4c465 0%, 
-        #d4a574 25%, 
-        #7a9b3a 50%, 
-        #d4a574 75%, 
-        #f4c465 100%);
-    z-index: 10;
+        #d4a574 20%, 
+        #7a9b3a 40%, 
+        #d4a574 60%, 
+        #f4c465 80%,
+        #d4a574 100%);
+    z-index: 15;
 }
 
 .service-marketing::after {
@@ -166,74 +227,61 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, 
-        transparent 0%, 
-        transparent 80%,
-        rgba(232, 220, 200, 0.5) 100%);
-    transform: translateY(100%);
-    transition: all 0.6s ease;
+    height: 300%;
+    background: 
+        linear-gradient(180deg, 
+            transparent 0%, 
+            rgba(232, 220, 200, 0.3) 33%,
+            transparent 66%,
+            rgba(232, 220, 200, 0.3) 100%);
+    transform: translateY(0%);
+    transition: none;
     z-index: 1;
+    opacity: 0;
 }
 
 .service-marketing:hover::after {
-    transform: translateY(0%);
-    animation: scrollFeed 2s ease-in-out infinite;
+    opacity: 1;
+    animation: scrollFeed 3s linear infinite;
 }
 
 @keyframes scrollFeed {
-    0%, 100% { transform: translateY(0%); }
-    50% { transform: translateY(-10%); }
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-66.66%); }
 }
 
 .service-marketing:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 20px 50px rgba(212, 165, 116, 0.4);
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 60px rgba(212, 165, 116, 0.5);
 }
 
-/* 6. DISTRIBUTION - Assembly Line */
+/* ========================================
+   6. DISTRIBUTION - Live Assembly Line
+   ======================================== */
 .service-distribution {
-    border-radius: 8px;
-    background: linear-gradient(135deg, 
-        rgba(220, 220, 220, 0.98) 0%, 
-        rgba(240, 240, 240, 0.98) 50%,
-        rgba(220, 220, 220, 0.98) 100%);
-    border: 2px solid rgba(92, 64, 51, 0.3);
+    border-radius: 10px;
+    background: 
+        linear-gradient(135deg, #dcdcdc 0%, #f0f0f0 50%, #dcdcdc 100%);
+    border: 3px solid rgba(92, 64, 51, 0.4);
     position: relative;
+    overflow: hidden;
 }
 
+/* Gear icon */
 .service-distribution::before {
     content: '⚙️';
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 2rem;
-    opacity: 0.2;
-    animation: none;
-    transition: all 0.6s ease;
-}
-
-.service-distribution::after {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--leather-brown) 0px,
-        var(--leather-brown) 10px,
-        transparent 10px,
-        transparent 20px
-    );
-    opacity: 0.3;
+    top: 15px;
+    left: 15px;
+    font-size: 4rem;
+    opacity: 0.25;
+    transition: all 0.3s ease;
     z-index: 1;
 }
 
 .service-distribution:hover::before {
-    animation: rotateGear 2s linear infinite;
-    opacity: 0.4;
+    animation: rotateGear 3s linear infinite;
+    opacity: 0.5;
 }
 
 @keyframes rotateGear {
@@ -241,18 +289,61 @@
     to { transform: rotate(360deg); }
 }
 
+/* Conveyor belt */
+.service-distribution::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--leather-brown) 0px,
+        var(--leather-brown) 15px,
+        transparent 15px,
+        transparent 30px
+    );
+    opacity: 0.4;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
 .service-distribution:hover::after {
-    animation: conveyorBelt 1.5s linear infinite;
+    animation: conveyorBelt 2s linear infinite;
+    opacity: 0.7;
 }
 
 @keyframes conveyorBelt {
     from { background-position: 0 0; }
-    to { background-position: 20px 0; }
+    to { background-position: 30px 0; }
 }
 
+/* Add moving boxes on hover */
 .service-distribution:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(92, 64, 51, 0.3);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(92, 64, 51, 0.4);
+}
+
+/* Add second gear */
+.service-distribution .service-icon::after {
+    content: '⚙️';
+    position: absolute;
+    bottom: 60px;
+    right: 15px;
+    font-size: 3rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.service-distribution:hover .service-icon::after {
+    opacity: 0.4;
+    animation: rotateGearReverse 2.5s linear infinite;
+}
+
+@keyframes rotateGearReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
 /* Ensure content stays above animated elements */
@@ -261,5 +352,5 @@
 .service-card p,
 .service-card .service-pricing {
     position: relative;
-    z-index: 5;
+    z-index: 10;
 }
