@@ -96,55 +96,68 @@ body {
     font-weight: 300;
 }
 
-.nav-links {
-    display: flex;
+.nav-menu {
+    position: fixed;
+    right: -100%;
+    top: 70px;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--charcoal) 0%, var(--dark-wood) 100%);
+    width: 250px;
+    height: calc(100vh - 70px);
+    padding: 2rem 0;
+    gap: 0;
     list-style: none;
-    gap: 2rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
+    transition: right 0.4s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
-.navbar.scrolled .nav-links {
-    opacity: 1;
-    visibility: visible;
+.nav-menu.active {
+    right: 0;
 }
 
-.nav-links a {
+.nav-menu li {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(232, 220, 200, 0.1);
+}
+
+.nav-link {
     color: var(--warm-white);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
     position: relative;
+    display: block;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--accent-color);
-    text-shadow: 0 0 10px rgba(155, 197, 61, 0.5);
+.nav-link:hover,
+.nav-link.active {
+    color: var(--candle-warm);
+    text-shadow: 0 0 10px rgba(244, 196, 101, 0.5);
 }
 
-.nav-links a::after {
+.nav-link::after {
     content: '';
     position: absolute;
     bottom: -5px;
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--accent-color);
+    background: var(--candle-warm);
     transition: var(--transition);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
 .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    z-index: 1000;
 }
 
 .hamburger span {
@@ -152,6 +165,18 @@ body {
     height: 3px;
     background: var(--warm-white);
     transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Hero Section */
