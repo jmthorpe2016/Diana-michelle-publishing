@@ -736,20 +736,21 @@ section::before {
 
 /* Books Section */
 .books {
-    background: 
-        linear-gradient(180deg, 
-            rgba(232, 220, 200, 0.92) 0%, 
-            rgba(212, 196, 168, 0.95) 50%, 
-            rgba(232, 220, 200, 0.92) 100%);
+    background: transparent;
     position: relative;
 }
 
 .books .container {
-    background: linear-gradient(135deg, rgba(232, 220, 200, 0.6) 0%, rgba(212, 196, 168, 0.6) 100%);
+    background: linear-gradient(135deg, rgba(232, 220, 200, 0.98) 0%, rgba(212, 196, 168, 0.98) 100%);
     border-radius: 30px;
     padding: 3rem 2rem;
-    box-shadow: 0 10px 40px rgba(92, 64, 51, 0.15);
-    border: 2px solid rgba(212, 165, 116, 0.3);
+    box-shadow: 0 10px 40px rgba(92, 64, 51, 0.3);
+    border: 2px solid rgba(212, 165, 116, 0.4);
+}
+
+.books .section-title {
+    color: var(--primary-color) !important;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .books-grid {
