@@ -142,4 +142,183 @@ window.addEventListener('scroll', () => {
 
 // Counter animation removed - stats display as-is without animation
 
+// Shopping Cart Functionality
+let cart = [];
+
+function addToCart(id, name, price, type) {
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: id,
+            name: name,
+            price: price,
+            type: type,
+            quantity: 1
+        });
+    }
+    
+    updateCart();
+    showCartNotification(name);
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCart();
+}
+
+function updateQuantity(id, change) {
+    const item = cart.find(item => item.id === id);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(id);
+        } else {
+            updateCart();
+        }
+    }
+}
+
+function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    // Update cart count
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    
+    // Calculate total
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = `$${total.toFixed(2)}`;
+    
+    // Update cart items display
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+    } else {
+        cartItems.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-image">📚</div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <div class="cart-item-quantity">
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">🗑️</button>
+            </div>
+        `).join('');
+    }
+    
+    // Save cart to localStorage
+    localStorage.setItem('dmpCart', JSON.stringify(cart));
+}
+
+function toggleCart() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    cartSidebar.classList.toggle('active');
+}
+
+function showCartNotification(itemName) {
+    // Optional: Add a toast notification
+    alert(`"${itemName}" added to cart!`);
+}
+
+function proceedToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    toggleCart();
+    openCheckout();
+}
+
+function openCheckout() {
+    const modal = document.getElementById('checkoutModal');
+    const checkoutItems = document.getElementById('checkoutItems');
+    const checkoutTotal = document.getElementById('checkoutTotal');
+    
+    // Calculate total
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    checkoutTotal.textContent = `$${total.toFixed(2)}`;
+    
+    // Display items
+    checkoutItems.innerHTML = cart.map(item => `
+        <div class="checkout-item">
+            <span>${item.name} x ${item.quantity}</span>
+            <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        </div>
+    `).join('');
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+    const modal = document.getElementById('checkoutModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Payment method switching
+document.addEventListener('DOMContentLoaded', () => {
+    // Load cart from localStorage
+    const savedCart = localStorage.getItem('dmpCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+    }
+    
+    // Payment method toggle
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            // Hide all payment fields
+            document.querySelectorAll('.payment-fields').forEach(field => {
+                field.style.display = 'none';
+            });
+            
+            // Show selected payment fields
+            const selectedMethod = e.target.value;
+            const fieldId = selectedMethod + 'PaymentFields';
+            const selectedField = document.getElementById(fieldId);
+            if (selectedField) {
+                selectedField.style.display = 'block';
+            }
+        });
+    });
+    
+    // Checkout form submission
+    const checkoutForm = document.getElementById('checkoutForm');
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(checkoutForm);
+        const paymentMethod = formData.get('paymentMethod');
+        
+        // Here you would integrate with actual payment processor
+        // For now, just show success message
+        alert(`Order placed successfully! Payment method: ${paymentMethod}\n\nYou will receive a confirmation email shortly.`);
+        
+        // Clear cart
+        cart = [];
+        updateCart();
+        closeCheckout();
+    });
+    
+    // Close modal when clicking outside
+    const modal = document.getElementById('checkoutModal');
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeCheckout();
+        }
+    });
+});
+
 console.log('Diana Michelle Publishing website loaded successfully!');
