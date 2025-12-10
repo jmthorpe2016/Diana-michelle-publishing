@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desert Boy Ministries - 2026 Content Strategy & Blueprint</title>
+    <script>
+        // Password protection - redirect to login if not authenticated
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = '/index.html';
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
