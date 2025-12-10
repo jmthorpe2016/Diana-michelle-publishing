@@ -548,10 +548,12 @@ section::before {
     border-radius: 10px;
     border-left: 4px solid var(--candle-warm);
     box-shadow: 0 5px 15px rgba(92, 64, 51, 0.2);
-    transition: var(--transition);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .service-card::before {
@@ -569,21 +571,26 @@ section::before {
 .service-card::after {
     content: '';
     position: absolute;
-    top: 10px;
-    left: -20px;
-    width: 80px;
-    height: 80px;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,50 Q30,20 50,30 T90,50" stroke="%235c4033" stroke-width="3" fill="none"/><circle cx="30" cy="25" r="8" fill="%237a9b3a" opacity="0.6"/><circle cx="50" cy="35" r="6" fill="%237a9b3a" opacity="0.7"/><circle cx="70" cy="40" r="7" fill="%237a9b3a" opacity="0.5"/><circle cx="85" cy="48" r="5" fill="%237a9b3a" opacity="0.6"/></svg>');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(232, 220, 200, 0.98) 0%, rgba(212, 196, 168, 0.98) 100%);
+    border-radius: 10px;
+    border-left: 4px solid var(--candle-warm);
+    transform: rotateY(0deg);
+    transform-origin: left center;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    box-shadow: -5px 5px 20px rgba(92, 64, 51, 0.3);
     pointer-events: none;
-    transition: var(--transition);
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+    transform: translateY(-10px) translateX(15px) rotateY(-8deg);
+    box-shadow: 
+        -15px 15px 40px rgba(92, 64, 51, 0.3),
+        0 15px 40px rgba(212, 165, 116, 0.4);
     border-left-color: var(--candle-glow);
 }
 
@@ -593,8 +600,8 @@ section::before {
 }
 
 .service-card:hover::after {
-    opacity: 0.35;
-    transform: translateX(-5px);
+    transform: rotateY(-25deg);
+    box-shadow: -15px 10px 30px rgba(92, 64, 51, 0.4);
 }
 
 .service-icon {
@@ -879,6 +886,7 @@ section::before {
     border: 2px solid rgba(212, 165, 116, 0.3);
     box-shadow: 0 5px 15px rgba(92, 64, 51, 0.2);
     transition: var(--transition);
+    position: relative;
 }
 
 .contact-item:hover {
