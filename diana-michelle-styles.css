@@ -75,13 +75,14 @@ body {
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cinzel', serif;
     font-size: 1.8rem;
     color: var(--warm-white);
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     transition: all 0.4s ease;
+    letter-spacing: 2px;
 }
 
 .navbar.scrolled .logo {
@@ -270,9 +271,11 @@ body {
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 4rem;
     font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1px;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -280,7 +283,6 @@ body {
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    font-weight: 300;
 }
 
 .hero-buttons {
@@ -386,10 +388,12 @@ section::before {
 }
 
 .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .title-underline {
@@ -477,11 +481,12 @@ section::before {
 }
 
 .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
     color: var(--candle-warm);
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 8px rgba(244, 196, 101, 0.3);
+    font-weight: 700;
 }
 
 .stat-label {
@@ -557,10 +562,11 @@ section::before {
 }
 
 .service-card h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--primary-color);
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: 600;
 }
 
 .service-card p {
@@ -582,7 +588,7 @@ section::before {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--candle-warm);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 /* Authors Section */
@@ -672,10 +678,11 @@ section::before {
 }
 
 .author-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .author-genre {
@@ -746,10 +753,11 @@ section::before {
 }
 
 .book-card h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--primary-color);
     padding: 1rem 1.5rem 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .book-author {
@@ -820,9 +828,10 @@ section::before {
 }
 
 .contact-item h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .contact-item p {
@@ -898,8 +907,9 @@ section::before {
 
 .footer-section h3,
 .footer-section h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     margin-bottom: 1rem;
+    font-weight: 600;
     color: var(--accent-color);
 }
 
