@@ -1,0 +1,265 @@
+/* ========================================
+   CUSTOM SERVICE CARD ANIMATIONS
+   ======================================== */
+
+/* 1. MANUSCRIPT EVALUATION - Notebook/Page Flip */
+.service-manuscript {
+    border-radius: 5px 15px 15px 5px;
+    border-left: 8px solid var(--leather-brown);
+    background: 
+        repeating-linear-gradient(
+            transparent,
+            transparent 25px,
+            rgba(212, 165, 116, 0.1) 25px,
+            rgba(212, 165, 116, 0.1) 26px
+        ),
+        linear-gradient(135deg, rgba(245, 240, 232, 0.98) 0%, rgba(232, 220, 200, 0.98) 100%);
+}
+
+.service-manuscript::after {
+    background: 
+        repeating-linear-gradient(
+            transparent,
+            transparent 25px,
+            rgba(212, 165, 116, 0.1) 25px,
+            rgba(212, 165, 116, 0.1) 26px
+        ),
+        linear-gradient(135deg, rgba(245, 240, 232, 0.98) 0%, rgba(232, 220, 200, 0.98) 100%);
+    border-left: 8px solid var(--leather-brown);
+}
+
+.service-manuscript:hover {
+    transform: translateY(-10px) translateX(20px) rotateY(-12deg);
+}
+
+.service-manuscript:hover::after {
+    transform: rotateY(-35deg);
+    box-shadow: -20px 10px 35px rgba(92, 64, 51, 0.5);
+}
+
+/* 2. EDITORIAL SERVICES - Open Book with Magnifying Glass */
+.service-editorial {
+    border-radius: 15px;
+    clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
+}
+
+.service-editorial::before {
+    content: '🔍';
+    font-size: 5rem;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.service-editorial:hover::before {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.service-editorial:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* 3. COVER DESIGN - Canvas/Art Board */
+.service-cover {
+    border-radius: 8px;
+    border: 6px solid var(--dark-wood);
+    background: linear-gradient(135deg, 
+        rgba(255, 250, 240, 0.98) 0%, 
+        rgba(240, 230, 210, 0.98) 50%,
+        rgba(255, 250, 240, 0.98) 100%);
+    position: relative;
+}
+
+.service-cover::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(244, 196, 101, 0.3) 25%,
+        rgba(212, 165, 116, 0.3) 50%,
+        rgba(122, 155, 58, 0.3) 75%,
+        transparent 100%);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: -1;
+    border-radius: 8px;
+}
+
+.service-cover:hover::before {
+    opacity: 1;
+    animation: paintbrush 1.5s ease-in-out;
+}
+
+@keyframes paintbrush {
+    0% { transform: translateX(-100%) rotate(-5deg); }
+    100% { transform: translateX(100%) rotate(5deg); }
+}
+
+.service-cover:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: var(--candle-warm);
+}
+
+/* 4. BOOK PRODUCTION - Hardcover Book */
+.service-production {
+    border-radius: 5px 12px 12px 5px;
+    border-left: 12px solid var(--leather-brown);
+    border-right: 2px solid rgba(92, 64, 51, 0.3);
+    border-top: 2px solid rgba(92, 64, 51, 0.2);
+    border-bottom: 2px solid rgba(92, 64, 51, 0.2);
+    box-shadow: 
+        inset -2px 0 5px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(92, 64, 51, 0.2);
+}
+
+.service-production::after {
+    border-left: 12px solid var(--leather-brown);
+    border-radius: 5px 12px 12px 5px;
+}
+
+.service-production:hover {
+    transform: translateY(-15px) translateX(10px) rotateY(-5deg) rotateX(5deg);
+}
+
+.service-production:hover::after {
+    transform: rotateY(-15deg);
+    box-shadow: -10px 15px 40px rgba(92, 64, 51, 0.5);
+}
+
+/* 5. MARKETING & PR - Social Media Card */
+.service-marketing {
+    border-radius: 20px;
+    border: 3px solid rgba(212, 165, 116, 0.4);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.98) 0%, 
+        rgba(245, 240, 232, 0.98) 100%);
+    overflow: hidden;
+}
+
+.service-marketing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        #f4c465 0%, 
+        #d4a574 25%, 
+        #7a9b3a 50%, 
+        #d4a574 75%, 
+        #f4c465 100%);
+    z-index: 10;
+}
+
+.service-marketing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 80%,
+        rgba(232, 220, 200, 0.5) 100%);
+    transform: translateY(100%);
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.service-marketing:hover::after {
+    transform: translateY(0%);
+    animation: scrollFeed 2s ease-in-out infinite;
+}
+
+@keyframes scrollFeed {
+    0%, 100% { transform: translateY(0%); }
+    50% { transform: translateY(-10%); }
+}
+
+.service-marketing:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(212, 165, 116, 0.4);
+}
+
+/* 6. DISTRIBUTION - Assembly Line */
+.service-distribution {
+    border-radius: 8px;
+    background: linear-gradient(135deg, 
+        rgba(220, 220, 220, 0.98) 0%, 
+        rgba(240, 240, 240, 0.98) 50%,
+        rgba(220, 220, 220, 0.98) 100%);
+    border: 2px solid rgba(92, 64, 51, 0.3);
+    position: relative;
+}
+
+.service-distribution::before {
+    content: '⚙️';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+    opacity: 0.2;
+    animation: none;
+    transition: all 0.6s ease;
+}
+
+.service-distribution::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--leather-brown) 0px,
+        var(--leather-brown) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.service-distribution:hover::before {
+    animation: rotateGear 2s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes rotateGear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.service-distribution:hover::after {
+    animation: conveyorBelt 1.5s linear infinite;
+}
+
+@keyframes conveyorBelt {
+    from { background-position: 0 0; }
+    to { background-position: 20px 0; }
+}
+
+.service-distribution:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(92, 64, 51, 0.3);
+}
+
+/* Ensure content stays above animated elements */
+.service-card .service-icon,
+.service-card h3,
+.service-card p,
+.service-card .service-pricing {
+    position: relative;
+    z-index: 5;
+}
