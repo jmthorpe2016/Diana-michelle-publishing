@@ -38,7 +38,7 @@ body {
     overflow-x: hidden;
     background: 
         linear-gradient(rgba(26, 20, 16, 0.15), rgba(26, 20, 16, 0.15)),
-        url('images/candlelit-library.jpg');
+        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -188,7 +188,7 @@ body {
             rgba(42, 31, 26, 0.6) 25%,
             rgba(61, 47, 36, 0.6) 75%,
             rgba(26, 20, 16, 0.65) 100%),
-        url('images/window-nature-1.jpg');
+        url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1600&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
