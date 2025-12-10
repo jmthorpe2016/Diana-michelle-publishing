@@ -428,6 +428,14 @@ section::before {
     position: relative;
 }
 
+.about .container {
+    background: linear-gradient(135deg, rgba(232, 220, 200, 0.6) 0%, rgba(212, 196, 168, 0.6) 100%);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 40px rgba(92, 64, 51, 0.15);
+    border: 2px solid rgba(212, 165, 116, 0.3);
+}
+
 .about::before {
     content: '';
     position: absolute;
@@ -468,10 +476,33 @@ section::before {
     text-align: center;
     padding: 2rem;
     background: linear-gradient(135deg, rgba(232, 220, 200, 0.95) 0%, rgba(212, 196, 168, 0.95) 100%);
-    border-radius: 10px;
     border: 2px solid rgba(212, 165, 116, 0.3);
     box-shadow: 0 5px 15px rgba(92, 64, 51, 0.2);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item:nth-child(1) {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-item:nth-child(2) {
+    border-radius: 20px 50px 20px 50px;
+}
+
+.stat-item:nth-child(3) {
+    border-radius: 50% 20px 50% 20px;
+}
+
+.stat-item:nth-child(4) {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    border-radius: 0;
 }
 
 .stat-item:hover {
