@@ -359,6 +359,23 @@ section {
     line-height: 1.8;
 }
 
+.service-pricing {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-family: 'Playfair Display', serif;
+}
+
 /* Authors Section */
 .authors {
     background: var(--bg-light);

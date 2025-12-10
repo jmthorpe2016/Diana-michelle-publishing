@@ -6,6 +6,8 @@
     <title>Diana Michelle Publishing - Bringing Stories to Life</title>
     <link rel="stylesheet" href="diana-michelle-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -93,35 +95,71 @@
                 <p class="section-subtitle">Comprehensive publishing solutions tailored to your needs</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-product-id="101" data-product-name="Manuscript Evaluation" data-product-price="299.00" data-product-type="service">
                     <div class="service-icon">📝</div>
                     <h3>Manuscript Evaluation</h3>
                     <p>Professional assessment of your manuscript with detailed feedback and recommendations for improvement.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">$299</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(101, 'Manuscript Evaluation', 299.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-product-id="102" data-product-name="Editorial Services" data-product-price="599.00" data-product-type="service">
                     <div class="service-icon">✏️</div>
                     <h3>Editorial Services</h3>
                     <p>Comprehensive editing including developmental, copy editing, and proofreading by experienced editors.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">Starting at $599</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(102, 'Editorial Services', 599.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-product-id="103" data-product-name="Cover Design" data-product-price="499.00" data-product-type="service">
                     <div class="service-icon">🎨</div>
                     <h3>Cover Design</h3>
                     <p>Eye-catching, professional cover designs that capture the essence of your story and attract readers.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">$499</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(103, 'Cover Design', 499.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-product-id="104" data-product-name="Book Production" data-product-price="899.00" data-product-type="service">
                     <div class="service-icon">📚</div>
                     <h3>Book Production</h3>
                     <p>High-quality printing and production services for both print and digital formats.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">Starting at $899</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(104, 'Book Production', 899.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-product-id="105" data-product-name="Marketing & PR Package" data-product-price="1299.00" data-product-type="service">
                     <div class="service-icon">📢</div>
                     <h3>Marketing & PR</h3>
                     <p>Strategic marketing campaigns, social media management, and public relations to maximize your book's reach.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">$1,299</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(105, 'Marketing & PR Package', 1299.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-product-id="106" data-product-name="Distribution Services" data-product-price="399.00" data-product-type="service">
                     <div class="service-icon">🌐</div>
                     <h3>Distribution</h3>
                     <p>Wide distribution network including online retailers, bookstores, and international markets.</p>
+                    <div class="service-pricing">
+                        <span class="service-price">$399</span>
+                        <button class="btn btn-primary btn-small add-to-cart" onclick="addToCart(106, 'Distribution Services', 399.00, 'service')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

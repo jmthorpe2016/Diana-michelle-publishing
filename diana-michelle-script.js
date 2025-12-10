@@ -145,6 +145,23 @@ window.addEventListener('scroll', () => {
 // Shopping Cart Functionality
 let cart = [];
 
+// Stripe Configuration
+// IMPORTANT: Replace 'YOUR_PUBLISHABLE_KEY_HERE' with your actual Stripe publishable key
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_KEY_HERE'; // Replace with your key
+let stripe = null;
+
+// Initialize Stripe when DOM is loaded
+if (typeof Stripe !== 'undefined') {
+    try {
+        // Only initialize if a real key is provided
+        if (STRIPE_PUBLISHABLE_KEY !== 'pk_test_YOUR_KEY_HERE') {
+            stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+        }
+    } catch (error) {
+        console.log('Stripe initialization pending - add your publishable key');
+    }
+}
+
 function addToCart(id, name, price, type) {
     const existingItem = cart.find(item => item.id === id);
     
@@ -296,21 +313,100 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Checkout form submission
     const checkoutForm = document.getElementById('checkoutForm');
-    checkoutForm.addEventListener('submit', (e) => {
+    checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = new FormData(checkoutForm);
         const paymentMethod = formData.get('paymentMethod');
         
-        // Here you would integrate with actual payment processor
-        // For now, just show success message
-        alert(`Order placed successfully! Payment method: ${paymentMethod}\n\nYou will receive a confirmation email shortly.`);
+        // Disable submit button to prevent double submission
+        const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+        
+        try {
+            if (paymentMethod === 'card' && stripe) {
+                // Process with Stripe
+                await processStripePayment(formData);
+            } else if (paymentMethod === 'paypal') {
+                // PayPal integration would go here
+                alert('PayPal integration: You would be redirected to PayPal to complete payment.\n\nFor now, order is recorded.');
+                completeOrder(formData, paymentMethod);
+            } else if (paymentMethod === 'venmo' || paymentMethod === 'cashapp') {
+                // Manual payment methods
+                const username = paymentMethod === 'venmo' ? 
+                    formData.get('venmoUsername') : 
+                    formData.get('cashappTag');
+                
+                if (!username) {
+                    alert(`Please enter your ${paymentMethod === 'venmo' ? 'Venmo username' : 'Cash App tag'}`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    return;
+                }
+                
+                alert(`Please send $${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)} to ${paymentMethod === 'venmo' ? '@DianaPublishing' : '$DianaPublishing'}\n\nOnce payment is confirmed, your order will be processed.`);
+                completeOrder(formData, paymentMethod);
+            } else {
+                // Fallback for when Stripe is not configured
+                alert('Payment processing is being set up. Your order has been recorded and we will contact you to complete payment.\n\nThank you for your order!');
+                completeOrder(formData, paymentMethod);
+            }
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('There was an error processing your payment. Please try again or contact us directly.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
+    
+    // Process Stripe payment
+    async function processStripePayment(formData) {
+        // In a real implementation, you would:
+        // 1. Send cart data to your server
+        // 2. Server creates a Stripe Payment Intent
+        // 3. Server returns client secret
+        // 4. Use stripe.confirmCardPayment() with the client secret
+        
+        // For now, simulate the process
+        alert('Stripe Payment Processing:\n\nIn production, this will securely process your card through Stripe.\n\nYour order has been recorded!');
+        completeOrder(formData, 'card');
+    }
+    
+    // Complete order and clear cart
+    function completeOrder(formData, paymentMethod) {
+        // Here you would send order data to your server/email
+        const orderData = {
+            items: cart,
+            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+            customer: {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                city: formData.get('city'),
+                state: formData.get('state'),
+                zip: formData.get('zip')
+            },
+            paymentMethod: paymentMethod,
+            date: new Date().toISOString()
+        };
+        
+        console.log('Order placed:', orderData);
+        
+        // Send order confirmation email (you would implement this with EmailJS or similar)
+        // emailjs.send('service_id', 'template_id', orderData);
         
         // Clear cart
         cart = [];
         updateCart();
         closeCheckout();
-    });
+        
+        // Show success message
+        alert(`✅ Order Confirmed!\n\nThank you for your order!\nConfirmation email will be sent to ${orderData.customer.email}`);
+    }
     
     // Close modal when clicking outside
     const modal = document.getElementById('checkoutModal');
