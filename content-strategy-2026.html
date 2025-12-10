@@ -3,111 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desert Boy Ministries - 2026 Content Strategy</title>
+    <title>Desert Boy Ministries - 2026 Content Strategy & Blueprint</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap');
-        
-        /* Login Page Styles */
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #1a365d 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-        
-        .login-container {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 450px;
-            width: 90%;
-            text-align: center;
-        }
-        
-        .login-logo {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .login-container h1 {
-            color: #1a365d;
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .login-container p {
-            color: #6c757d;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        
-        .login-form {
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            color: #2c3e50;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-        
-        .login-button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-            margin-top: 10px;
-        }
-        
-        .login-button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 15px;
-            display: none;
-            text-align: center;
-        }
-        
-        .content-hidden {
-            display: none;
-        }
 
         * {
             margin: 0;
@@ -422,84 +320,34 @@
         }
 
         @media (max-width: 768px) {
-            /* Login Page Mobile */
-            .login-container {
-                padding: 30px 20px;
-                width: 95%;
-            }
-            
-            .login-logo {
-                font-size: 36px;
-            }
-            
-            .login-container h1 {
-                font-size: 24px;
-            }
-            
-            .login-container p {
-                font-size: 13px;
-            }
-            
-            .form-group input {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            .login-button {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            /* Content Mobile */
             .header h1 { font-size: 32px; }
-            .header h2 { font-size: 22px; }
             .calendar-section { padding: 30px 20px; }
             .day { min-height: 100px; font-size: 11px; }
             .badge { font-size: 8px; padding: 3px 6px; }
-            
-            .workflow-section { padding: 30px 20px; }
-            .workflow-day { padding: 20px; }
-            .day-name { font-size: 20px; }
-            .task-title { font-size: 14px; }
-            .task-time { font-size: 12px; }
-            .task-description { font-size: 13px; }
-            
-            .summary { padding: 40px 20px; }
-            .summary h3 { font-size: 26px; }
-            .summary-number { font-size: 36px; }
-            .summary-label { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <!-- Login Overlay -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-container">
-            <div class="login-logo">🔐</div>
-            <h1>Secure Access</h1>
-            <p>Enter your credentials to view the 2026 Content Strategy</p>
-            <form class="login-form" onsubmit="return handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter username" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter password" required>
-                </div>
-                <button type="submit" class="login-button">Login</button>
-                <div class="error-message" id="errorMessage">Invalid credentials. Please try again.</div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Main Content (Hidden until login) -->
-    <div class="container content-hidden" id="mainContent">
+    <div class="container">
         <header class="header">
             <h1>Desert Boy Ministries of Jesus</h1>
             <h2>2026 Content Schedule</h2>
             <p class="subtitle">Designed Around Church Services (Thu/Fri/Sun)</p>
         </header>
+
+        <!-- Theme Mockups Section -->
+        <div style="background: linear-gradient(135deg, #d4af37 0%, #c9a66b 50%, #d4af37 100%); padding: 50px 40px; text-align: center; border-bottom: 5px solid #1a365d;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a2e; margin-bottom: 15px;">🎨 Website Theme Mockups</h2>
+            <p style="font-size: 18px; color: #2c2416; margin-bottom: 25px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Explore 5 professionally designed website themes for Desert Boy Ministries. Each theme features real scripture references, desert imagery, and interactive elements.
+            </p>
+            <a href="theme-mockups/index.html" target="_blank" style="display: inline-block; background: #1a365d; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3); transition: all 0.3s ease;">
+                View All 5 Theme Mockups →
+            </a>
+            <p style="font-size: 14px; color: #3a3a3a; margin-top: 20px; opacity: 0.8;">
+                ✨ Features: Peek-a-boo scripture reveals, responsive design, side menus, dark mode & more
+            </p>
+        </div>
 
         <div class="notice">
             <h3>⛪ Ministry Schedule</h3>
@@ -995,47 +843,6 @@
             dayDiv.innerHTML = content;
             calendar.appendChild(dayDiv);
         }
-    </script>
-
-    <!-- Login Authentication Script -->
-    <script>
-        // Login credentials
-        const validCredentials = {
-            username: 'desertboyministriesofjesus.com',
-            password: 'CappsActs236'
-        };
-
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-            
-            if (username === validCredentials.username && password === validCredentials.password) {
-                // Successful login
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('mainContent').classList.remove('content-hidden');
-                
-                // Store login session
-                sessionStorage.setItem('isLoggedIn', 'true');
-            } else {
-                // Failed login
-                errorMessage.style.display = 'block';
-                document.getElementById('password').value = '';
-                document.getElementById('username').focus();
-            }
-            
-            return false;
-        }
-
-        // Check if already logged in
-        window.addEventListener('load', function() {
-            if (sessionStorage.getItem('isLoggedIn') === 'true') {
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('mainContent').classList.remove('content-hidden');
-            }
-        });
     </script>
 </body>
 </html>

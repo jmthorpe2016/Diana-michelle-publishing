@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page Design Options - DBMOJ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 18px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .option-number {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .option-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .option-preview {
+            padding: 40px;
+            min-height: 600px;
+            background: linear-gradient(135deg, #e8d5b7 0%, #d4b896 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donation-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #6c757d;
+            border: 2px solid #e9ecef;
+        }
+
+        .qr-text {
+            font-size: 13px;
+            color: #6c757d;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #6c757d;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .donate-button {
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .features {
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .features h4 {
+            color: #1a365d;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            list-style: none;
+            font-size: 14px;
+            color: #6c757d;
+            line-height: 2;
+        }
+
+        .feature-list li::before {
+            content: '✓ ';
+            color: #2e7d32;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Option-specific styles */
+        .option-1 .qr-placeholder {
+            border: 3px solid #2563eb;
+            background: linear-gradient(135deg, #e8d5b7 0%, #d4b896 100%);
+        }
+
+        .option-2 .donation-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .option-3 .qr-section {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: -20px -20px 25px -20px;
+        }
+
+        .option-3 .qr-text {
+            color: white;
+        }
+
+        .option-4 .donation-card {
+            max-width: 500px;
+        }
+
+        .option-4 .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .option-5 .qr-placeholder {
+            border-radius: 50%;
+            border: 4px solid #2563eb;
+        }
+
+        .option-6 .donation-card {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .option-4 .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 Donation Page Design Options</h1>
+        <p>6 Different Layouts for Team Review</p>
+    </div>
+
+    <div class="options-grid">
+        <!-- Option 1: Current with Enhanced QR -->
+        <div class="option-card option-1">
+            <div class="option-header">
+                <div class="option-number">OPTION 1</div>
+                <div class="option-title">Enhanced Current Design</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="card-title">DESERT BOY MINISTRIES OF JESUS</div>
+                    <div class="qr-section">
+                        <div class="qr-placeholder">QR CODE<br>with gradient bg</div>
+                        <div class="qr-text">Scan the QR code or use the form below to give</div>
+                    </div>
+                    <div class="divider">OR GIVE ONLINE</div>
+                    <div class="form-group">
+                        <label class="form-label">Donation Amount (USD)</label>
+                        <input type="text" class="form-input" placeholder="$ 25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Note (optional)</label>
+                        <input type="text" class="form-input" placeholder="4%454">
+                    </div>
+                    <button class="donate-button">DONATE NOW</button>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>QR code with desert gradient background</li>
+                    <li>Clean, centered layout</li>
+                    <li>Simple form below QR</li>
+                    <li>Minimal changes from current</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Option 2: Soft Gradient Card -->
+        <div class="option-card option-2">
+            <div class="option-header">
+                <div class="option-number">OPTION 2</div>
+                <div class="option-title">Soft Gradient Card</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="card-title">SUPPORT OUR MINISTRY</div>
+                    <div class="qr-section">
+                        <div class="qr-placeholder">QR CODE</div>
+                        <div class="qr-text">Quick scan to give</div>
+                    </div>
+                    <div class="divider">OR ENTER AMOUNT</div>
+                    <div class="form-group">
+                        <label class="form-label">Donation Amount</label>
+                        <input type="text" class="form-input" placeholder="$ 25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <input type="text" class="form-input" placeholder="Optional note">
+                    </div>
+                    <button class="donate-button">GIVE NOW</button>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>Subtle gradient on card itself</li>
+                    <li>Softer, more modern feel</li>
+                    <li>Simplified text</li>
+                    <li>Cleaner visual hierarchy</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Option 3: Bold QR Header -->
+        <div class="option-card option-3">
+            <div class="option-header">
+                <div class="option-number">OPTION 3</div>
+                <div class="option-title">Bold QR Header</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="qr-section">
+                        <div class="qr-placeholder">QR CODE</div>
+                        <div class="qr-text">Scan to Give Instantly</div>
+                    </div>
+                    <div class="card-title">DESERT BOY MINISTRIES</div>
+                    <div class="divider">OR USE FORM</div>
+                    <div class="form-group">
+                        <label class="form-label">Amount (USD)</label>
+                        <input type="text" class="form-input" placeholder="$ 25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Note</label>
+                        <input type="text" class="form-input" placeholder="Optional">
+                    </div>
+                    <button class="donate-button">DONATE</button>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>QR code in blue header section</li>
+                    <li>More prominent QR placement</li>
+                    <li>Eye-catching design</li>
+                    <li>Clear visual separation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Option 4: Side-by-Side Layout -->
+        <div class="option-card option-4">
+            <div class="option-header">
+                <div class="option-number">OPTION 4</div>
+                <div class="option-title">Side-by-Side Layout</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="card-title">GIVE TO DBMOJ</div>
+                    <div class="layout">
+                        <div>
+                            <div class="qr-placeholder" style="width: 180px; height: 180px;">QR CODE</div>
+                            <div class="qr-text">Scan to give</div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label">Amount</label>
+                                <input type="text" class="form-input" placeholder="$ 25">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Note</label>
+                                <input type="text" class="form-input" placeholder="Optional">
+                            </div>
+                            <button class="donate-button">GIVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>QR and form side-by-side</li>
+                    <li>More compact design</li>
+                    <li>Better use of space</li>
+                    <li>Modern layout</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Option 5: Circular QR Design -->
+        <div class="option-card option-5">
+            <div class="option-header">
+                <div class="option-number">OPTION 5</div>
+                <div class="option-title">Circular QR Design</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="card-title">SUPPORT THE MINISTRY</div>
+                    <div class="qr-section">
+                        <div class="qr-placeholder">QR<br>CODE</div>
+                        <div class="qr-text">Scan the circle to give</div>
+                    </div>
+                    <div class="divider">OR DONATE BELOW</div>
+                    <div class="form-group">
+                        <label class="form-label">Donation Amount</label>
+                        <input type="text" class="form-input" placeholder="$ 25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <input type="text" class="form-input" placeholder="Optional note">
+                    </div>
+                    <button class="donate-button">DONATE NOW</button>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>Unique circular QR code</li>
+                    <li>Distinctive, memorable design</li>
+                    <li>Stands out visually</li>
+                    <li>Modern aesthetic</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Option 6: Glass Morphism -->
+        <div class="option-card option-6">
+            <div class="option-header">
+                <div class="option-number">OPTION 6</div>
+                <div class="option-title">Glass Morphism Style</div>
+            </div>
+            <div class="option-preview">
+                <div class="donation-card">
+                    <div class="card-title">DESERT BOY MINISTRIES</div>
+                    <div class="qr-section">
+                        <div class="qr-placeholder">QR CODE</div>
+                        <div class="qr-text">Scan to give instantly</div>
+                    </div>
+                    <div class="divider">OR GIVE ONLINE</div>
+                    <div class="form-group">
+                        <label class="form-label">Amount (USD)</label>
+                        <input type="text" class="form-input" placeholder="$ 25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Note</label>
+                        <input type="text" class="form-input" placeholder="Optional">
+                    </div>
+                    <button class="donate-button">DONATE</button>
+                </div>
+            </div>
+            <div class="features">
+                <h4>Key Features:</h4>
+                <ul class="feature-list">
+                    <li>Frosted glass effect</li>
+                    <li>Ultra-modern design</li>
+                    <li>Background shows through</li>
+                    <li>Trendy aesthetic</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <h2 style="color: #1a365d; margin-bottom: 20px;">📊 Recommendation Summary</h2>
+        <p style="color: #6c757d; line-height: 1.8; font-size: 15px;">
+            <strong>Option 1</strong> - Best for minimal changes<br>
+            <strong>Option 3</strong> - Best for QR code prominence<br>
+            <strong>Option 4</strong> - Best for desktop users<br>
+            <strong>Option 6</strong> - Best for modern, trendy look
+        </p>
+    </div>
+</body>
+</html>

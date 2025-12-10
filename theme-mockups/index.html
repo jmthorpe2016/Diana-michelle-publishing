@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desert Boy Ministries - Theme Mockups Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c1a3d 50%, #1a365d 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #c9a66b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 20px;
+            color: #b8b8d1;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: #8a8aa0;
+            font-style: italic;
+        }
+
+        .intro {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 5px solid #d4af37;
+            padding: 30px;
+            margin-bottom: 60px;
+            border-radius: 10px;
+        }
+
+        .intro h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .intro p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d0d0e0;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .theme-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .theme-preview {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .theme-preview.theme1 {
+            background: linear-gradient(135deg, #d4a574, #c9985e, #b8865a);
+        }
+
+        .theme-preview.theme2 {
+            background: linear-gradient(135deg, #ff6b6b, #9c27b0, #4fc3f7);
+        }
+
+        .theme-preview.theme3 {
+            background: linear-gradient(135deg, #8b6f47, #6b5639, #a0826d);
+        }
+
+        .theme-preview.theme4 {
+            background: linear-gradient(135deg, #fafafa, #e8e8e8, #d4af37);
+        }
+
+        .theme-preview.theme5 {
+            background: linear-gradient(135deg, #4a1c40, #d4af37, #c9a66b);
+        }
+
+        .theme-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #d4af37;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .theme-content {
+            padding: 35px;
+        }
+
+        .theme-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .theme-subtitle {
+            font-size: 18px;
+            color: #b8b8d1;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .theme-description {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #d0d0e0;
+            margin-bottom: 25px;
+        }
+
+        .theme-features {
+            margin-bottom: 25px;
+        }
+
+        .theme-features h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 12px;
+        }
+
+        .theme-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .theme-features li {
+            font-size: 14px;
+            color: #b8b8d1;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .theme-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        .theme-link {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #d4af37, #c9a66b);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .theme-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .comparison-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #d4af37;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .comparison-table td {
+            color: #d0d0e0;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8a8aa0;
+            font-size: 14px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-section {
+                padding: 30px 20px;
+            }
+            .comparison-table {
+                font-size: 12px;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Desert Boy Ministries</h1>
+            <p>Website Theme Enhancement Mockups</p>
+            <p class="subtitle">Five distinct design concepts for your review</p>
+        </header>
+
+        <div class="intro" style="background: linear-gradient(135deg, #d4af37, #c9a66b); color: #1a1a2e; padding: 30px; border-radius: 15px; margin-bottom: 40px; text-align: center;">
+            <h2 style="color: #1a1a2e; font-size: 28px; margin-bottom: 15px;">👋 Welcome! Here's How to View the Themes</h2>
+            <p style="font-size: 18px; line-height: 1.8; color: #2c2416; margin-bottom: 20px;">
+                <strong>Step 1:</strong> Scroll down to see 5 theme cards below<br>
+                <strong>Step 2:</strong> Click the <strong>"View Full Mockup"</strong> button on any theme<br>
+                <strong>Step 3:</strong> Explore the full website design<br>
+                <strong>Step 4:</strong> Click your browser's <strong>BACK button (←)</strong> to return here and try another theme
+            </p>
+            <p style="font-size: 16px; color: #3a3a3a; margin-top: 15px;">
+                💡 <strong>Tip:</strong> Try all 5 themes to see which design best represents the ministry!
+            </p>
+        </div>
+
+        <div class="intro">
+            <h2>📋 About These Mockups</h2>
+            <p>
+                Below are five fully-realized theme concepts for the Desert Boy Ministries of Jesus website. 
+                Each mockup is a complete, interactive HTML page that demonstrates the visual design, layout, 
+                and user experience enhancements. All themes display the same content (scripture references, navigation items) 
+                but with different visual styles. These mockups are ready for review and implementation.
+            </p>
+        </div>
+
+        <div class="themes-grid">
+            <!-- Theme 1 -->
+            <div class="theme-card">
+                <div class="theme-preview theme1">
+                    <div class="theme-number">THEME 1</div>
+                </div>
+                <div class="theme-content">
+                    <h3 class="theme-title">Sands of Grace</h3>
+                    <p class="theme-subtitle">Warm Desert Minimalism</p>
+                    <p class="theme-description">
+                        A clean, minimalist design using warm sand tones (beiges, ochres, soft golds) with 
+                        ample white space and modern typography. Features a stunning desert dunes hero image 
+                        and subtle sand-grain textures throughout.
+                    </p>
+                    <div class="theme-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Full-width hero with desert photography</li>
+                            <li>Sticky navigation that shrinks on scroll</li>
+                            <li>Terracotta accent colors for CTAs</li>
+                            <li>Featured message section</li>
+                            <li>Clean iconography and hover animations</li>
+                        </ul>
+                    </div>
+                    <a href="theme1-sands-of-grace.html" class="theme-link">View Full Mockup →</a>
+                </div>
+            </div>
+
+            <!-- Theme 2 -->
+            <div class="theme-card">
+                <div class="theme-preview theme2">
+                    <div class="theme-number">THEME 2</div>
+                </div>
+                <div class="theme-content">
+                    <h3 class="theme-title">Oasis of Worship</h3>
+                    <p class="theme-subtitle">Rich Colors + Christian Symbolism</p>
+                    <p class="theme-description">
+                        A vibrant, hopeful design featuring turquoise, sunset purples/oranges, and gold accents. 
+                        Incorporates Christian symbolism (cross, dove, rays of light) with desert imagery to 
+                        represent transformation and revival.
+                    </p>
+                    <div class="theme-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Animated hero with symbolic overlays</li>
+                            <li>Testimonies slider with real stories</li>
+                            <li>Interactive journey map with pins</li>
+                            <li>Light & Life blog highlight section</li>
+                            <li>Rich jewel-tone color palette</li>
+                        </ul>
+                    </div>
+                    <a href="theme2-oasis-of-worship.html" class="theme-link">View Full Mockup →</a>
+                </div>
+            </div>
+
+            <!-- Theme 3 -->
+            <div class="theme-card">
+                <div class="theme-preview theme3">
+                    <div class="theme-number">THEME 3</div>
+                </div>
+                <div class="theme-content">
+                    <h3 class="theme-title">Desert Mission</h3>
+                    <p class="theme-subtitle">Documentary / Story-Driven Layout</p>
+                    <p class="theme-description">
+                        A narrative-focused design with large featured photographs and immersive full-width 
+                        image blocks. Magazine-style layout emphasizes authentic mission work and real-life 
+                        stories from the field.
+                    </p>
+                    <div class="theme-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Scroll-story sections with parallax</li>
+                            <li>Outreach projects grid with overlays</li>
+                            <li>Meet the team interactive profiles</li>
+                            <li>Earthy, textured backgrounds</li>
+                            <li>Documentary-style photography focus</li>
+                        </ul>
+                    </div>
+                    <a href="theme3-desert-mission.html" class="theme-link">View Full Mockup →</a>
+                </div>
+            </div>
+
+            <!-- Theme 4 -->
+            <div class="theme-card">
+                <div class="theme-preview theme4">
+                    <div class="theme-number">THEME 4</div>
+                </div>
+                <div class="theme-content">
+                    <h3 class="theme-title">Modern Desert Church</h3>
+                    <p class="theme-subtitle">Clean Tech-Forward Design</p>
+                    <p class="theme-description">
+                        A contemporary, tech-savvy design with flat design principles, generous whitespace, 
+                        and animated micro-interactions. Features light/dark mode toggle and appeals to 
+                        younger, digital-native audiences.
+                    </p>
+                    <div class="theme-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Light/Dark mode toggle functionality</li>
+                            <li>Animated counters for social proof</li>
+                            <li>Hide/show navigation on scroll</li>
+                            <li>Live chat widget for engagement</li>
+                            <li>Modern geometric fonts and layouts</li>
+                        </ul>
+                    </div>
+                    <a href="theme4-modern-desert-church.html" class="theme-link">View Full Mockup →</a>
+                </div>
+            </div>
+
+            <!-- Theme 5 -->
+            <div class="theme-card">
+                <div class="theme-preview theme5">
+                    <div class="theme-number">THEME 5</div>
+                </div>
+                <div class="theme-content">
+                    <h3 class="theme-title">Heritage & Horizon</h3>
+                    <p class="theme-subtitle">Traditional Faith + Expansive Vision</p>
+                    <p class="theme-description">
+                        A blend of traditional church aesthetics (serif fonts, classic layouts) with sweeping 
+                        desert horizon imagery. Combines the comfort of familiar faith elements with inspiring, 
+                        expansive vision for the future.
+                    </p>
+                    <div class="theme-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Timeline component for ministry history</li>
+                            <li>Classic sermon series archive</li>
+                            <li>Invitation banner with open sky theme</li>
+                            <li>Burgundy/royal blue church accents</li>
+                            <li>Serif typography with modern grid</li>
+                        </ul>
+                    </div>
+                    <a href="theme5-heritage-horizon.html" class="theme-link">View Full Mockup →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div class="comparison-section">
+            <h2>Quick Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Theme</th>
+                        <th>Target Audience</th>
+                        <th>Primary Mood</th>
+                        <th>Complexity</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sands of Grace</strong></td>
+                        <td>Broad appeal, all ages</td>
+                        <td>Calm, peaceful, focused</td>
+                        <td>Low-Medium</td>
+                        <td>Clarity and simplicity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Oasis of Worship</strong></td>
+                        <td>Younger adults, seekers</td>
+                        <td>Hopeful, vibrant, transformative</td>
+                        <td>Medium-High</td>
+                        <td>Engagement and energy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Desert Mission</strong></td>
+                        <td>Mission-minded, donors</td>
+                        <td>Authentic, documentary, raw</td>
+                        <td>Medium</td>
+                        <td>Storytelling and impact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modern Desert Church</strong></td>
+                        <td>Digital natives, Gen Z/Millennials</td>
+                        <td>Contemporary, sleek, innovative</td>
+                        <td>High</td>
+                        <td>Tech-forward ministry</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Heritage & Horizon</strong></td>
+                        <td>Traditional believers, all ages</td>
+                        <td>Rooted, timeless, expansive</td>
+                        <td>Medium</td>
+                        <td>Blending tradition with vision</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="footer">
+            <p><strong>Desert Boy Ministries of Jesus</strong></p>
+            <p>Theme Mockups Generated: December 2024</p>
+            <p>All mockups are fully responsive and ready for development review</p>
+        </footer>
+    </div>
+</body>
+</html>

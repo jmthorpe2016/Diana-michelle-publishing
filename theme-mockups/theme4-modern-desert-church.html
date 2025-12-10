@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme 4: Modern Desert Church - Desert Boy Ministries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: #f9f6f1;
+            --bg-dark: #0a0a0a;
+            --text-light: #2c2416;
+            --text-dark: #f5f5f5;
+            --accent-gold: #d4af37;
+            --accent-sand: #c9a66b;
+            --card-light: #fdfbf7;
+            --card-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10001;
+            background: var(--accent-gold);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201, 166, 107, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .nav {
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #000;
+        }
+
+        body.dark-mode .logo-icon {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(249, 246, 241, 0.80), rgba(245, 237, 224, 0.85)),
+                        url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1920&q=80&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9)),
+                        url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1920&q=80&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            animation: slideUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 22px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #666;
+            animation: slideUp 1s ease;
+        }
+
+        body.dark-mode .hero p {
+            color: #aaa;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1.2s ease;
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .cta-button.primary {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .cta-button.primary:hover {
+            background: var(--accent-sand);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--accent-gold);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* Content Cards */
+        .content-section {
+            padding: 100px 40px;
+            background: var(--card-light);
+        }
+
+        body.dark-mode .content-section {
+            background: var(--card-dark);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+        }
+
+        .content-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .content-card {
+            background: var(--card-light);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(201, 166, 107, 0.15);
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.08);
+            position: relative;
+            min-height: 250px;
+        }
+
+        body.dark-mode .content-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        body.dark-mode .content-card:hover {
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover .card-title {
+            color: var(--accent-gold);
+        }
+
+        .card-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #6b5639;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .content-card:hover .card-desc {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .card-desc {
+            color: #aaa;
+        }
+
+        /* Peek-a-boo hint */
+        .content-card::after {
+            content: "Hover to reveal";
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--accent-gold);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-card:hover::after {
+            opacity: 0;
+        }
+
+
+        /* Live Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-light);
+            padding: 60px 40px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .footer {
+            background: var(--card-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        body.dark-mode .footer p {
+            color: #aaa;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Page Transitions */
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        body {
+            animation: pageLoad 0.6s ease;
+        }
+
+
+        .content-card {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .content-card:nth-child(1) { animation-delay: 0.3s; }
+        .content-card:nth-child(2) { animation-delay: 0.5s; }
+        .content-card:nth-child(3) { animation-delay: 0.7s; }
+
+        /* Theme Label */
+        .theme-label {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 13px;
+            z-index: 10000;
+        }
+
+        body.dark-mode .theme-label {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 48px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-label">Theme 4: Modern Desert Church</div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">✝</div>
+                <span>Desert Boy Ministries of Jesus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#bookstore">Bookstore</a></li>
+                <li><a href="#fragments">Fragments of Truth</a></li>
+                <li><a href="#announcements">Announcements</a></li>
+                <li><a href="#give">Give</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 0 400 Q 300 350 600 400 T 1200 400" stroke="#d4af37" stroke-width="2" fill="none" opacity="0.3"/>
+                <path d="M 0 450 Q 300 400 600 450 T 1200 450" stroke="#d4af37" stroke-width="2" fill="none" opacity="0.2"/>
+                <circle cx="900" cy="150" r="80" fill="#d4af37" opacity="0.2"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">✝️</div>
+            <h1>Desert Boy Ministries of Jesus</h1>
+            <p>Walking through the wilderness with Christ</p>
+            <div class="cta-group">
+                <a href="#" class="cta-button primary">Explore Our Ministry</a>
+                <a href="#" class="cta-button secondary">View Teachings</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripture References -->
+    <section class="content-section">
+        <h2 class="section-title">Scripture References</h2>
+        <p style="text-align: center; color: #6b5639; font-size: 18px; margin-bottom: 60px; max-width: 900px; margin-left: auto; margin-right: auto;">Foundational truths from God's Word</p>
+        <div class="content-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 1200px;">
+            <div class="content-card">
+                <div class="card-icon">✝️</div>
+                <div class="card-title">Acts 2:36 KJV</div>
+                <div class="card-desc">
+                    "Therefore let all the house of Israel know assuredly, that God hath made the same Jesus, whom ye have crucified, both Lord and Christ."
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-icon">✝️</div>
+                <div class="card-title">Romans 10:15 KJV</div>
+                <div class="card-desc">
+                    "And how shall they preach, except they be sent? as it is written, How beautiful are the feet of them that preach the gospel of peace, and bring glad tidings of good things!"
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-icon">✝️</div>
+                <div class="card-title">Isaiah 43:18-19 KJV</div>
+                <div class="card-desc">
+                    "Remember ye not the former things, neither consider the things of old. Behold, I will do a new thing; now it shall spring forth; shall ye not know it? I will even make a way in the wilderness, and rivers in the desert."
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-icon">✝️</div>
+                <div class="card-title">Isaiah 40:3-4 KJV</div>
+                <div class="card-desc">
+                    "The voice of him that crieth in the wilderness, Prepare ye the way of the LORD, make straight in the desert a highway for our God. Every valley shall be exalted, and every mountain and hill shall be made low."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Desert Boy Ministries of Jesus. All rights reserved.</p>
+        <p style="margin-top: 10px;">Built with faith. Powered by grace.</p>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div class="chat-widget" title="Ask a Question">💬</div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Hide/Show Nav on Scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Animate counters on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => {
+                        const target = parseInt(num.textContent);
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                num.textContent = num.textContent;
+                                clearInterval(timer);
+                            } else {
+                                num.textContent = Math.floor(current) + (num.textContent.includes('+') ? '+' : '');
+                            }
+                        }, 30);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) observer.observe(statsSection);
+    </script>
+</body>
+</html>

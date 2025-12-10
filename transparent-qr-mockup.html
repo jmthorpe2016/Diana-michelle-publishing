@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent QR Code Mockup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .mockup-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 30px;
+        }
+
+        .qr-display {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Blue-Desert Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #5b8fc9 30%, #d4b896 70%, #e8d5b7 100%);
+        }
+
+        /* QR Code Grid */
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(21, 1fr);
+            grid-template-rows: repeat(21, 1fr);
+            width: 250px;
+            height: 250px;
+            gap: 2px;
+        }
+
+        .qr-cell {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Original - White background cells */
+        .qr-cell.white {
+            background: white;
+        }
+
+        .qr-cell.black {
+            background: black;
+        }
+
+        /* Transparent - No white, gradient shows through */
+        .qr-cell.transparent {
+            background: transparent;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #6c757d;
+            margin-top: 20px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .pros {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #2e7d32;
+            text-align: left;
+        }
+
+        .cons {
+            margin-top: 10px;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #c62828;
+            text-align: left;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            font-size: 32px;
+            margin-bottom: 10px;
+            grid-column: 1 / -1;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6c757d;
+            font-size: 16px;
+            margin-bottom: 40px;
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Transparent QR Code Options</h1>
+        <div class="subtitle">Removing white squares to show gradient background</div>
+
+        <!-- Current Design -->
+        <div class="mockup-card">
+            <div class="mockup-title">Current: White Background</div>
+            <div class="qr-display gradient-bg">
+                <div class="qr-grid" id="qrOriginal"></div>
+            </div>
+            <div class="description">
+                <strong>Standard QR Code:</strong> Black squares on white background. The white squares block the gradient.
+            </div>
+            <div class="pros">
+                <strong>✓ Pros:</strong><br>
+                • Maximum scanability<br>
+                • Works with all QR scanners<br>
+                • Industry standard
+            </div>
+        </div>
+
+        <!-- Transparent Option -->
+        <div class="mockup-card">
+            <div class="mockup-title">Option: Transparent Background</div>
+            <div class="qr-display gradient-bg">
+                <div class="qr-grid" id="qrTransparent"></div>
+            </div>
+            <div class="description">
+                <strong>Transparent QR Code:</strong> Only black squares visible, gradient shows through where white squares used to be.
+            </div>
+            <div class="pros">
+                <strong>✓ Pros:</strong><br>
+                • Beautiful gradient visible<br>
+                • Unique, artistic look<br>
+                • Matches theme perfectly
+            </div>
+            <div class="cons">
+                <strong>⚠ Cons:</strong><br>
+                • May be harder to scan (lighter areas)<br>
+                • Not all scanners work well<br>
+                • Need to test thoroughly
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate QR code pattern (simplified)
+        function generateQRPattern() {
+            const pattern = [];
+            for (let i = 0; i < 21; i++) {
+                pattern[i] = [];
+                for (let j = 0; j < 21; j++) {
+                    // Create a QR-like pattern
+                    // Corners (finder patterns)
+                    if ((i < 7 && j < 7) || (i < 7 && j > 13) || (i > 13 && j < 7)) {
+                        pattern[i][j] = (i === 0 || i === 6 || j === 0 || j === 6 || 
+                                        (i >= 2 && i <= 4 && j >= 2 && j <= 4)) ? 1 : 0;
+                    }
+                    // Random-ish pattern for data
+                    else {
+                        pattern[i][j] = (i + j * 3 + i * j) % 3 === 0 ? 1 : 0;
+                    }
+                }
+            }
+            return pattern;
+        }
+
+        const pattern = generateQRPattern();
+
+        // Render original QR (with white background)
+        const qrOriginal = document.getElementById('qrOriginal');
+        pattern.forEach(row => {
+            row.forEach(cell => {
+                const div = document.createElement('div');
+                div.className = `qr-cell ${cell ? 'black' : 'white'}`;
+                qrOriginal.appendChild(div);
+            });
+        });
+
+        // Render transparent QR (no white, gradient shows through)
+        const qrTransparent = document.getElementById('qrTransparent');
+        pattern.forEach(row => {
+            row.forEach(cell => {
+                const div = document.createElement('div');
+                div.className = `qr-cell ${cell ? 'black' : 'transparent'}`;
+                qrTransparent.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
